@@ -7,7 +7,7 @@
             <div>
                 <p>Username</p>
                 <input type="text" name="username" id="">
-                <p>Password <a href="/reset" class="help">Forgot?</a></p>
+                <p>Password</p>
                 <input type="password" name="password" id="">
                 <button type="submit">Login</button>
                 <% if(error) { %>
@@ -16,6 +16,7 @@
             </div>   
       
             <div class="member">
+                <p class="help"><a href="/reset" class="help">Forgot password?</a></p>
                 <p class="help" id="">Not a member? <a href="/register" class="help">Sign up now</a></p>
             </div>
         </form>
