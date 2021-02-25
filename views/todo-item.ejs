@@ -5,8 +5,8 @@
         <li class="todo-list-item">
             <form action="/edit/<%= item._id %>?page=<%=page%>&sorted=<%=sorted%>" method="post">
                 <input type="text" value="<%= item.task %>" name="task">
-                <button type="submit"><i class="fas fa-check"></i></button>
-                <a href="/?page=<%=page%>&sorted=<%=sorted%>" class="cancel"><i class="fas fa-undo-alt"></i></a>
+                <button type="submit" id="confirm"><i class="fas fa-check"></i></button>
+                <a href="/remove/<%= item._id %>?page=<%=page%>&sorted=<%=sorted%>" class="remove"> <span class="fas fa-times"></span></a>
             </form>
         </li>
         <% } else { %>
@@ -14,7 +14,6 @@
         <li class="todo-list-item">
             <div class="todo-list-item-name"><%= item.task %></div>
             <a href="?editId=<%= item._id %>&page=<%=page%>&sorted=<%=sorted%>" class="edit"> <span class="fas fa-pen"></span></a>
-            <a href="/remove/<%= item._id %>?page=<%=page%>&sorted=<%=sorted%>" class="remove"> <span class="fas fa-times"></span></a>
         </li>
         <% } %>
     <% }) %>

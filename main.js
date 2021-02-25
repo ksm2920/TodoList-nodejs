@@ -1,7 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const router = require('./routes/todoRoute');
+const cookieParser = require('cookie-parser');
+
+const todoRouter = require('./routes/todoRoute');
+const userRouter = require('./routes/userRoute');
+
 const nodeSass = require('node-sass-middleware');
 require('dotenv').config();
 
@@ -18,7 +22,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('view engine', 'ejs');
 
-app.use('/', router);
+app.use(cookieParser());
+
+app.use('/', todoRouter);
+app.use('/', userRouter);
 
 const option = {
     useNewUrlParser: true,
@@ -37,7 +44,7 @@ mongoose.connect(
         }
         console.log("database is connected");
         
-        app.listen(3000, () => {
+        app.listen(process.env.PORT|| 3000, () => {
             console.log("application is running too");
         })
     })

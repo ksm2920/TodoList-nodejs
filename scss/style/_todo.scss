@@ -1,0 +1,156 @@
+@import "responsive";
+.user {
+    margin: 10px;
+    float: right; 
+    color: white;
+}
+
+button {
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color:black;
+    height: 30px;
+}
+
+#logout{
+    margin-left: 10px;
+    font-family: 'Montserrat', sans-serif;
+    background-color: gray;
+    a {
+        text-decoration: none;
+        color: white;
+        padding: 10PX;
+    }
+}
+
+.todo-box {
+    color: black;
+    background:rgb(235, 235, 235);
+    position: absolute;
+    top:50%;
+    left: 50%;
+    width: 300px;
+    padding: 30px;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    h2 {
+        padding-bottom: 20px;
+        font-size: 2em;
+    }
+     ul {
+        list-style: none;
+    }
+    @include desktop {
+        width: 600px;
+    }
+}
+
+.todo-content {
+    width: 90%;
+}
+
+.todo-input {
+    input {
+        margin-top: 10px;
+        border: none;
+        border-radius: 4px;
+        padding: 10px;
+        width: 78%;
+        @include desktop {
+            width: 89%;
+        }
+    }
+    button {
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 0 11px;
+        background-color: gray;
+        height: 35px;
+    }
+}
+
+.sort {
+    float: right;
+    margin-top: 20px;
+    a {
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+}
+
+.list {
+    margin-top: 50px;
+}
+
+.todo-list-item {
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background: white;
+    display: flex;
+    flex-direction: row;
+    form {
+        width: 100%;
+        display: flex;
+    }
+    input {
+        flex-grow: 2;
+        margin-right: 20px;
+        border: none;
+        border-radius: 5px;
+    }
+    #confirm {
+        color:green;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        background-color: white;
+       
+    }
+    .remove {
+        color: red;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 5px;
+        margin-left: 5px;
+        font-size: 15px;
+    }
+    div {
+        flex-grow: 2;
+    }
+    .edit {
+        color:black;
+        margin-right: 10px;
+        cursor:pointer;
+        text-decoration: none;
+    }
+}
+
+.show {
+    margin-top: 20px;
+    a {
+        text-decoration: none;
+        color: gray;
+        font-weight: bold;
+    }
+}
+
+.success {
+    color: green;
+}
+
+.no-item {
+    text-align: center;
+}

@@ -2,8 +2,10 @@
 <html lang="en">
     <%- include('head.ejs') %>  
     <body>
+        <div class="user"><span id="username"><%= user.username %></span> <button id="logout"><a href="/logout">Log Out</a></button></div>
+        
         <div class="todo-box">
-            <h2>To-Do List</h2>
+            <h2>Todo List</h2>
             <div class="todo-content">
                 <form action="/" method="post" class="todo-input">
                     <input type="text" name="task">
@@ -13,21 +15,23 @@
                 <p class="success"><%=success%></p>
                 <div class="sort">
                     <% if(sorted == 1) { %>
-                    <a href="/?page=<%=page%>&sorted=-1">Oldest first <span class="fas fa-arrow-up"></span></a>
+                    <a href="/?page=<%=page%>&sorted=-1">Oldest first <span class="fas fa-chevron-up"></span></a>
                     <% } else if (sorted == -1) { %></page>
-                    <a href="/?page=<%=page%>&sorted=1">Newest first <span class="fas fa-arrow-down"></span></a>
+                    <a href="/?page=<%=page%>&sorted=1">Newest first <span class="fas fa-chevron-down"></span></a>
                     <% } %>
                 </div>
                 <div class="list">
+                    <% if(!items || items.length === 0) { %>
+                        <P class="no-item">No items to show</P>
+                    <% } else { %>                                            
                     <%- include('todo-item.ejs') %>  
+                    <% } %>
                 </div>
             </div>
 
             <div class="show">
-                <% if(maxPageNr > page) { %>
+                <% if( !reachedMaxItems ) { %>
                     <a href="/?page=<%=page+1%>&sorted=<%=sorted%>">SHOW MORE</a>
-                <% } else if (maxPageNr > 0 && maxPageNr < page) { %>
-                    <a href="/?page=1&sorted=<%=sorted%>">SHOW LESS</a>
                 <% } %>
             </div>
         </div>

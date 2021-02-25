@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('head.ejs') %>  
+    <body>
+        <form action="/register" method="post" class="register-form">
+            <h3>Sign Up</h3>
+            <div>
+                <p>Username</p>
+                <input type="text" name="username" id="">
+                <p>Email</p>
+                <input type="email" name="email" id="">
+                <p>Password</p>
+                <input type="password" name="password" id="">
+                <button type="submit">Sign up</button>
+                <% if(error) { %>
+                    <p class="error"><%= error %></p>
+                <% } %>
+            </div>
+        
+            <div class="member">
+                <p class="help">Already have an account? <a href="/login" class="help">Login</a></p>
+            </div>
+        </form>
+    </body>
+</html>
