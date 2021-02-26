@@ -57,10 +57,12 @@ const registerSubmit = async(req, res) => {
             from: process.env.TRANSPORT_MAIL,
             to: newUser.email,
             subject: "Welcome to TODOS",
-            html: `<h2>Hello ${newUser.username}!</h2>
+            html: `<h2>Hello ${newUser.username}!</h2><br/>
             <p>I am delighted that you're taking the first step to try my app "TODOS".</p>
             <p>You can create your own todo list to track things you need to do.</p>
-            <p>Hope you enjoy TODOS.</p>`
+            <p>Hope you enjoy TODOS.</p><br/><br/>
+            <p>Kind regards,</p>
+            <p>Sumi Kim</p>`
         })
         res.redirect('/login');
     }
