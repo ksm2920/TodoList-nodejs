@@ -1,5 +1,23 @@
 const User = require('../model/user');
 const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
+
+require('dotenv').config;
+
+
+const transport = nodemailer.createTransport({
+    host: "smtp.zoho.eu",
+    port: 465,
+    secure: true,
+    auth: {
+        user: process.env.TRANSPORT_MAIL,
+        pass: process.env.MAIL_PASS
+    },
+    tls:{
+        rejectUnauthorized:false
+    }
+    
+})
 
 const registerRender = (req, res) => {
     res.clearCookie('jwtToken');
@@ -27,13 +45,26 @@ const registerSubmit = async(req, res) => {
         const salt = await bcrypt.genSalt(12);
         const hashedPassword = await bcrypt.hash(password, salt);
         
-        new User ({
+        const newUser = new User ({
             username: username,
             email: email,
             password: hashedPassword
-        }).save();
+        });
         
-        return res.redirect('/login');
+        newUser.save();
+        
+        await transport.sendMail({
+            from: process.env.TRANSPORT_MAIL,
+            to: newUser.email,
+            subject: "Welcome to TODOS",
+            html: `<h2>Hello ${newUser.username}!</h2><br/>
+            <p>I am delighted that you're taking the first step to try my app "TODOS".</p>
+            <p>You can create your own todo list to track things you need to do.</p>
+            <p>Hope you enjoy TODOS.</p><br/><br/>
+            <p>Kind regards,</p>
+            <p>Sumi Kim</p>`
+        })
+        res.redirect('/login');
     }
     catch (err) {
         return res.render('register.ejs', {error:"System error " + err})
